@@ -1,6 +1,6 @@
 const { client } = require('../client');
 
-class Node {
+class GraphNode {
   constructor(id) {
     this.id = id;
   }
@@ -28,4 +28,4 @@ class Node {
   }
 }
 
-module.exports = Node;
+module.exports = GraphNode;

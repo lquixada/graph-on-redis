@@ -1,6 +1,6 @@
-const Node = require('./model/node');
+const GraphNode = require('./model/graph-node');
 
-const node1 = new Node(1);
+const node1 = new GraphNode(1);
 
 node1.getNeighbors()
   .then(data => console.log(data))

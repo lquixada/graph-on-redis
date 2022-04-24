@@ -1,16 +1,16 @@
 #!/usr/bin/env node
-const Node = require('../model/node');
+const GraphNode = require('../model/graph-node');
 
-const node2 = new Node(2);
+const node2 = new GraphNode(2);
 node2.set('data', 'Blake');
 
-const node3 = new Node(3);
+const node3 = new GraphNode(3);
 node3.set('data', 'Mary');
 
-const node4 = new Node(4);
+const node4 = new GraphNode(4);
 node4.set('data', 'Jack');
 
-const node1 = new Node(1);
+const node1 = new GraphNode(1);
 node1.set('data', 'John');
 node1.addNeighbor(node2);
 node1.addNeighbor(node3);
