@@ -1,11 +1,11 @@
-const { createClient } = require('redis');
+// Import ioredis.
+// You can also use `import Redis from "ioredis"`
+// if your project is an ESM module or a TypeScript project.
+const Redis = require("ioredis");
 
-(async () => {
-  const client = createClient();
+// Create a Redis instance.
+// By default, it will connect to localhost:6379.
+// We are going to cover how to specify connection options soon.
+const redis = new Redis();
 
-  client.on('error', (err) => console.log('Redis Client Error', err));
-
-  await client.connect();
-
-  exports.client = client;
-})();
+exports.client = redis;
