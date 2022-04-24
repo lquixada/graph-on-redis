@@ -17,13 +17,17 @@ class GraphNode {
     return redis.hget(`node:${this.id}`, key);
   }
 
+  async addNeighbors(nodes) {
+    const ids = nodes.map(node => node.id);
+    return redis.rpush(`node:${this.id}:neighbors`, ...ids);
+  }
+
   async addNeighbor(node) {
-    return redis.rpush(`node:${this.id}:neighbors`, node.id);
+    return this.addNeighbors([node]);
   }
 
   async getNeighbors() {
     const neighbors = await redis.lrange(`node:${this.id}:neighbors`, 0, -1);
-
     return neighbors.map(id => new GraphNode(id))
   }
 }
