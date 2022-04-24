@@ -15,3 +15,5 @@ node1.set('data', 'John');
 node1.addNeighbor(node2);
 node1.addNeighbor(node3);
 node1.addNeighbor(node4);
+
+process.exit();

@@ -1,4 +1,4 @@
-const { client } = require('../client');
+const redis = require('../redis');
 
 class GraphNode {
   constructor(id) {
@@ -6,7 +6,7 @@ class GraphNode {
   }
 
   async set(key, value) {
-    return client.hset(`node:${this.id}`, key, value);
+    return redis.hset(`node:${this.id}`, key, value);
   }
 
   async get(key) {
@@ -14,17 +14,17 @@ class GraphNode {
       return this.getNeighbors();
     }
 
-    return client.hget(`node:${this.id}`, key);
+    return redis.hget(`node:${this.id}`, key);
   }
 
   async addNeighbor(node) {
-    return client.rpush(`node:${this.id}:neighbors`, node.id);
+    return redis.rpush(`node:${this.id}:neighbors`, node.id);
   }
 
   async getNeighbors() {
-    const neighbors = await client.lrange(`node:${this.id}:neighbors`, 0, -1);
+    const neighbors = await redis.lrange(`node:${this.id}:neighbors`, 0, -1);
 
-    return neighbors.map(id => new Node(id))
+    return neighbors.map(id => new GraphNode(id))
   }
 }
 

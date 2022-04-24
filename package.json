@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "clean": "./scripts/flush-db",
+    "clean:db": "./scripts/flush-db",
     "graph": "./scripts/graph",
     "start": "node index",
     "test": "echo \"Error: no test specified\" && exit 1"
