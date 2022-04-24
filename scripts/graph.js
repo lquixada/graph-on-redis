@@ -1,4 +1,4 @@
-const Node = require('./model/node');
+const Node = require('../model/node');
 
 const node2 = new Node(2);
 node2.set('data', 'Blake');
