@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 const Node = require('../model/node');
 
 const node2 = new Node(2);

@@ -4,6 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "clean": "./scripts/flush-db",
+    "graph": "./scripts/graph",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
