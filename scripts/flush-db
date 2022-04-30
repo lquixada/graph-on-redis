@@ -1,7 +1,0 @@
-#!/usr/bin/env node
-const redis = require('../redis');
-
-redis.flushdb()
-  .then(data => console.log(data))
-  .catch(err => console.error(err))
-  .then(process.exit);

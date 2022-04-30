@@ -1,0 +1,37 @@
+#!/usr/bin/env node
+const redis = require('../redis');
+const Graph = require('../model/graph');
+
+(async function () {
+  await flushdb();
+
+  const node1 = new Graph.Node();
+  await node1.set('data', 'Blake');
+  
+  const node2 = new Graph.Node();
+  await node2.set('data', 'Mary');
+  
+  const node3 = new Graph.Node();
+  await node3.set('data', 'Jack');
+
+  const node4 = new Graph.Node();
+  await node4.set('data', 'John');
+
+  await node1.addNeighbors([node2, node3, node4]);
+
+  const graph = new Graph();
+  await graph.addNodes([node1, node2, node3, node4]);
+
+  console.log(await node1.getNeighbors());
+  
+  process.exit();
+}())
+
+async function flushdb() {
+  try {
+    const result = await redis.flushdb()
+    console.log(result)
+  } catch (err) {
+    console.error(err)
+  }
+}

@@ -1,8 +1,8 @@
-const GraphNode = require('./model/graph-node');
+const Graph = require('./model/graph');
 
-const node1 = new GraphNode(1);
+const node = new Graph.Node(1);
 
-node1.getNeighbors()
+node.getNeighbors()
   .then(data => console.log(data))
   .catch(err => console.error(err))
   .then(process.exit);
