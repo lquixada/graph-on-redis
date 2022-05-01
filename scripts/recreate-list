@@ -1,0 +1,36 @@
+#!/usr/bin/env node
+const redis = require('../redis');
+const LinkedList = require('../model/linked-list');
+
+(async function () {
+  await flushdb();
+
+  const node1 = new LinkedList.Node();
+  await node1.setData('Blake');
+  
+  const node2 = new LinkedList.Node();
+  await node2.setData('Mary');
+  
+  const node3 = new LinkedList.Node();
+  await node3.setData('Jack');
+
+  const node4 = new LinkedList.Node();
+  await node4.setData('John');
+
+  await node1.setNext(node2);
+  await node2.setNext(node3);
+  await node3.setNext(node4);
+
+  console.log(node1);
+  
+  process.exit();
+}())
+
+async function flushdb() {
+  try {
+    const result = await redis.flushdb()
+    console.log(result)
+  } catch (err) {
+    console.error(err)
+  }
+}
