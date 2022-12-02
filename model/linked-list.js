@@ -1,5 +1,33 @@
 const redis = require('../redis');
 
+class LinkedList {
+  static id = 1
+
+  static generateId() {
+    return this.id++
+  }
+
+  constructor(id) {
+    this.id = id || LinkedList.generateId();
+    this.head = null;
+    this.tail = null;
+  }
+
+  async addNodes(node) {
+    this.head = node?.id
+
+    while (node && node.hasNext()) {
+      node = node.getNext();
+    }
+
+    this.tail = node;
+
+    redis.hget()
+
+    return redis.hset(`list:${this.id}`, 'next', node.id);
+  }
+}
+
 class Node {
   static id = 1
 
@@ -26,7 +54,12 @@ class Node {
   }
 
   async getNext() {
-    return redis.hget(`list-node:${this.id}`, 'next');
+    const id = redis.hget(`list-node:${this.id}`, 'next');
+    return id ? new Node(id) : null;
+  }
+
+  async hasNext() {
+    return this.getNext() !== null;
   }
 }
 
